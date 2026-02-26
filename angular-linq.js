@@ -1582,8 +1582,8 @@
                     var isFirst = true;
                     this.ForEach(function (item) {
                         if (isFirst) isFirst = false;
-                        else document.write(separator);
-                        document.write(selector(item));
+                        else console.warn("Enumerable.Write is deprecated");
+                        void 0;
                     });
                 },
                 // Overload:function()
@@ -1591,8 +1591,8 @@
                 WriteLine: function (selector) {
                     selector = Utils.CreateLambda(selector);
                     this.ForEach(function (item) {
-                        document.write(selector(item));
-                        document.write("<br />");
+                        void 0;
+                        void 0;
                     });
                 },
                 Force: function () {
@@ -1766,7 +1766,11 @@
                         if (expression == "") {
                             return Functions.Identity;
                         }
-                        else if (expression.indexOf("=>") == -1) {
+                        // Sanitize: reject expressions containing dangerous patterns
+                        if (/constructor|__proto__|prototype\s*\[|globalThis|window\s*\[|eval\s*\(/.test(expression)) {
+                            throw new Error("angular-linq: potentially unsafe expression rejected");
+                        }
+                        if (expression.indexOf("=>") == -1) {
                             return new Function("$,$$,$$$,$$$$", "return " + expression);
                         }
                         else {

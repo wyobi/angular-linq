@@ -1,0 +1,12 @@
+{
+  "name": "angular-linq",
+  "version": "2.2.1",
+  "description": "LINQ for AngularJS - Wyobi maintained fork with security hardening",
+  "main": "angular-linq.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wyobi/angular-linq.git"
+  },
+  "license": "Ms-PL",
+  "keywords": ["angular", "angularjs", "linq"]
+}
